@@ -131,6 +131,7 @@ def process_info(medicine_info):
 
 
 strings = [
+
     "ARVAST A75 CAPSULE",
     "ALTRACIROL 100ML",
     "ALZIL 10MG TAB",
@@ -196,6 +197,23 @@ strings = [
     "ZOLAX 1 TAB",
     "ZOLAX 1.5 MG TABLET",
     "ZOLAX SR .1 TABLET",
+    "ACUTROL 400 MG TABLET",
+    "ACUTROL 400 TAB 15TAB",
+    "ACUTROL 800 10T",
+    "ACUTROL 800 10T",
+    "ACYLCAR TAB",
+    "ACYLCAR TAB",
+    "AMORTAS 30GM CREAM",
+    "AMORTAS CREAM 30G",
+    "AMTAS 10",
+    "AMTAS 2.5",
+    "AMTAS 2.5 MG TABLET",
+    "AMTAS 2.5 TAB 30'S",
+    "AMTAS 5 30T",
+    "AMTAS AT",
+    "AMTAS AT",
+    "AMTAS AT 15TAB",
+    "AMTAS AT 25MG"
 ]
 
 
@@ -209,4 +227,3 @@ for s in strings:
     print("| {:<25} | {:<6} | {:<10} | {:<9} | {:<10} |".format(
         medicine_info['pack_name'], medicine_info['power'], medicine_info['power_type'],
         medicine_info['pack_size'], medicine_info['pack_type']))
-
