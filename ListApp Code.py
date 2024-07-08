@@ -24,11 +24,17 @@ def process_info(medicine_info):
     i = 0
     while i < len(words):
         word = words[i]
+        if i == 0 and word.isdigit():
+            pack_name.append(word)
+            i += 1
+            continue
+        if i == 0 and any(char.isdigit() for char in word):
+            pack_name.append(word)
+            i += 1
+            continue
         if any(char.isdigit() for char in word):
-            # j = 0
-            # if word[j].isdigit():
-            #     pack_name.append(word[j])
-            #     j += 1
+            break
+        if word.isdigit():
             break
         elif word in pack_types:
             pack_type = word
@@ -46,12 +52,16 @@ def process_info(medicine_info):
             if pack_type == '' and power_type == '':
                 power = next_word
                 i += 1
+            else:
+                pack_size = next_word
         elif any(char.isdigit() for char in next_word):
             letters, numbers, first_type = split_alphanumeric(next_word)
             if first_type == "number":
                 power = numbers
                 if letters in power_types:
                     power_type = letters
+                elif letters in pack_types:
+                    pack_type = letters
                 i += 1
             elif first_type != "number":
                 if letters in power_types:
@@ -125,7 +135,6 @@ def process_info(medicine_info):
 
     return info
 
-
 strings = [
     "ARVAST A75 CAPSULE",
     "ALTRACIROL 100ML",
@@ -150,11 +159,52 @@ strings = [
     "ABAXIS 2.5 TAB",
     "3 D PLUS TAB 10 TAB",
     "3D FLAM 25 MG INJECTION",
+    "3D FLAM INJ 3ML",
+    "ZORYL10 MG",
+    "ZOREP 2MG TAB",
+    "ZONALTA 8MG TAB TAB",
+    "ZINSYP 60ML",
+    "ZITASPOR CAP",
+    "ZLEVERA 250",
+    "ZLIPICURE 10 TAB",
+    "ZLIPICURE TG TAB",
+    "ZLIPITAS 10 TAB",
+    "ZMORR F SOLUTION 60ML",
+    "ZODOX",
+    "ZODOX 10 VIAL INJ",
+    "ZODOX 10MG INJECTION",
+    "ZODOX 50 MG",
+    "ZODOX 50 VIAL INJ",
+    "ZODOX 50MG INJECTION",
+    "ZOLASTA",
+    "ZOLASTA",
+    "ZOLASTA 4 MG INJECTION",
+    "ZOLASTA 4GM VAIL",
+    "ZOLASTA 4MG INJ 10ML INJ",
+    "ZOLASTA INJ VAIL",
+    "ZOLASTA SINGLE",
+    "ZOLAX .25 TAB",
+    "ZOLAX .5 TAB",
+    "ZOLAX 0.25 10TAB",
+    "ZOLAX 0.25 MG TABLET",
+    "ZOLAX 0.25 MG TABLET SR",
+    "ZOLAX 0.25 TAB",
+    "ZOLAX 0.25MG TAB",
+    "ZOLAX 0.5 10TAB",
+    "ZOLAX 0.5 MG TABLET",
+    "ZOLAX 0.5 MG TABLET SR",
+    "ZOLAX 0.5MG TAB",
+    "ZOLAX 025",
+    "ZOLAX 05",
+    "ZOLAX 1 MG TABLET",
+    "ZOLAX 1 MG TABLET SR",
+    "ZOLAX 1 TAB",
+    "ZOLAX 1.5 MG TABLET",
+    "ZOLAX SR .1 TABLET",
 ]
+
 
 for s in strings:
     medicine_info = process_info(s)
     print(medicine_info)
 
-# "ZORYL MG20 TAB 10", skip
-# "ZORYL10 MG"
