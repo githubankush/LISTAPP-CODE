@@ -73,8 +73,7 @@ def process_info(medicine_info):
                     i += 1
                 else:
                     next_word.replace(" ", "")
-                    pack_name += next_word
-                    # power = next_word
+                    pack_name.append(next_word)
                     i += 1
 
         elif i < len(words):
@@ -86,10 +85,6 @@ def process_info(medicine_info):
             elif next_word in pack_types:
                 pack_type = next_word
                 i += 1
-
-            # elif not any(char.isdigit() for char in next_word):
-            #     pack_name.append(next_word)
-            #     i += 1
 
     # another case
     if i < len(words):
@@ -111,7 +106,6 @@ def process_info(medicine_info):
     for word in words[i:]:
         if any(pt in word for pt in power_types):
             power_type = word
-            # power = ''.join(filter(str.isdigit, word))
 
         elif any(pt in word for pt in pack_types):
             pack_type = word
@@ -134,6 +128,7 @@ def process_info(medicine_info):
     }
 
     return info
+
 
 strings = [
     "ARVAST A75 CAPSULE",
@@ -204,7 +199,14 @@ strings = [
 ]
 
 
+print("| {:<25} | {:<6} | {:<10} | {:<9} | {:<10} |".format(
+    "pack_name", "power", "power_type", "pack_size", "pack_type"))
+print("|---------------------------|--------|------------|-----------|------------|")
+
+
 for s in strings:
     medicine_info = process_info(s)
-    print(medicine_info)
+    print("| {:<25} | {:<6} | {:<10} | {:<9} | {:<10} |".format(
+        medicine_info['pack_name'], medicine_info['power'], medicine_info['power_type'],
+        medicine_info['pack_size'], medicine_info['pack_type']))
 
